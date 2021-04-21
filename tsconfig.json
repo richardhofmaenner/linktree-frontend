@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+        "@/components/*": ["components/*"],
+        "@/styles/*": ["styles/*"],
+        "@/config/*": ["config/*"],
+        "@/layouts/*": ["layouts/*"]
+      }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
