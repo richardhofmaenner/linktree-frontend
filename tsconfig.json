@@ -5,13 +5,41 @@
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
-        "@/components/*": ["components/*"],
-        "@/styles/*": ["styles/*"],
-        "@/config/*": ["config/*"],
-        "@/layouts/*": ["layouts/*"]
-      }
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ],
+      "@/config/*": [
+        "config/*"
+      ],
+      "@/layouts/*": [
+        "layouts/*"
+      ]
+    },
+    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "exclude": [
     "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }
