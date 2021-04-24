@@ -19,6 +19,6 @@
     position: relative;
 }
 
-.banner > button {
+.banner > a {
     z-index: 100;
 }
