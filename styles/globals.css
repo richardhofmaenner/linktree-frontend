@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Poppins:wght@400;700&display=swap');
+@import url('./../node_modules/@fortawesome/fontawesome-free/css/all.min.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +10,46 @@ body {
     @apply text-white;
 }
 
-h1 {
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, .h1 {
     font-size: 50px;
+}
+
+h2, .h2 {
+    font-size: 35px;
+}
+
+h3, .h3 {
+    font-size: 25px;
+}
+
+h4, .h4 {
+    font-size: 20px;
+}
+
+.animation-scroll-down > * {
+    animation-name: scrollDown;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes scrollDown {
+    from {
+        top: 0;
+    }
+
+    50% {
+        top: 40px;
+    }
+
+    to {
+        top: 0;
+    }
 }

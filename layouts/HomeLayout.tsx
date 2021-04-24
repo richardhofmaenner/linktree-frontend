@@ -12,10 +12,11 @@ function HomeLayout({ title, children }) {
       </Head>
       <header>
         <Banner image={'/images/bg-home.jpg'}>
-          <h1>Linktr.ee</h1>
+          <h1 className="mb-40">Linktr.ee</h1>
+          <p className="h2">The simple clone</p>
         </Banner>
       </header>
-      <main className="container mx-auto">
+      <main className="container mx-auto min-h-screen">
         {children}
       </main>
     </div>
