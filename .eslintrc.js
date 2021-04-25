@@ -10,9 +10,7 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
+    ecmaFeatures: { jsx: true },
     ecmaVersion: 12,
     sourceType: 'module',
   },
@@ -28,5 +26,10 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ['error'],
     'import/no-unresolved': ['off'],
     'react/jsx-max-props-per-line': ['error', { maximum: 3 }],
+    'jsx-a11y/anchor-is-valid': ['off'],
+    'object-curly-newline': ['error', {
+      ObjectExpression: { multiline: true },
+      ObjectPattern: 'never',
+    }],
   },
 }

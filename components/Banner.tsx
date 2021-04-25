@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from '@/styles/Banner.module.css'
-import Link from 'next/link'
 
 function Banner({ image, children }) {
   return (
