@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
 import CenterModalLayout from '@/layouts/CenterModalLayout'
 import Input from '@/components/forms/Input'
+import SubmitBtn from '@/components/forms/SubmitBtn'
 
-class Login extends Component {
+type myType = {
+  username: string,
+  password: string,
+}
 
+type myProps = {}
+
+class Login extends Component<myProps, myType> {
   constructor(props) {
     super(props)
     this.valueChanged = this.valueChanged.bind(this)
@@ -42,6 +49,9 @@ class Login extends Component {
             type="password"
             value={password}
           />
+        </div>
+        <div>
+          <SubmitBtn>Sign in</SubmitBtn>
         </div>
       </CenterModalLayout>
     )
