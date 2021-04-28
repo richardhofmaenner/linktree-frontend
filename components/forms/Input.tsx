@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 function Input({ name, type, placeholder, value, onValueChange }) {
   return (
     <input
-      className="border border-white rounded bg-transparent px-4 py-2 mb-5 focus:outline-none"
+      className="w-full border border-white rounded bg-transparent px-4 py-2 mb-5 focus:outline-none"
       type={type}
       placeholder={placeholder}
       name={name}

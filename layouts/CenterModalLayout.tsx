@@ -10,8 +10,10 @@ function CenterModalLayout({ title, modalTitle, children }) {
         <title>{title}</title>
       </Head>
       <main className="min-h-screen flex items-center justify-center">
-        <section className="w-1/2 md:w-1/3 text-center border border-gray-200 rounded py-4">
-          <div className="mb-10">
+        <section
+          className="w-5/6 sm:w-3/5 md:w-2/3 lg:w-1/3 border border-gray-200 rounded py-4 px-4 sm:px-14"
+        >
+          <div className="mb-10 text-center">
             <h1 className="h3">{modalTitle}</h1>
           </div>
           <div>
