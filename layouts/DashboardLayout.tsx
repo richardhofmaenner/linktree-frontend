@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import propTypes from 'prop-types'
 
-require('@/styles/DashboardLayout.module.css')
-
 const React = require('react')
 
 function DashboardLayout({ title, heading, children }) {
@@ -11,10 +9,10 @@ function DashboardLayout({ title, heading, children }) {
       <Head>
         <title>{title}</title>
       </Head>
-      <header className="container mx-auto">
+      <header className="container mx-auto mt-10">
         <h1 className="text-center">{heading}</h1>
       </header>
-      <main className="container mx-auto">
+      <main>
         {children}
       </main>
     </div>
