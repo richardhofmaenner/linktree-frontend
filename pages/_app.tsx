@@ -1,5 +1,6 @@
-import { React } from 'react'
 import '../styles/globals.css'
+
+const React = require('react')
 
 // eslint-disable-next-line react/prop-types
 function MyApp({ Component, pageProps }) {
