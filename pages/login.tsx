@@ -14,7 +14,7 @@ type myType = {
 
 type myProps = {}
 
-class Login extends Component<myProps, myType> {
+export default class Login extends Component<myProps, myType> {
   constructor(props) {
     super(props)
     this.valueChanged = this.valueChanged.bind(this)
@@ -87,5 +87,3 @@ class Login extends Component<myProps, myType> {
     )
   }
 }
-
-export default Login
