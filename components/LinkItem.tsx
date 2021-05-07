@@ -1,11 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import BtnLink from '@/components/layout/BtnLink'
 
 function LinkItem({ item }) {
   return (
-    <div>
+    <div className="relative border border-white rounded p-5 mb-10 hover:bg-white hover:text-black transition-colors cursor-pointer">
+      <a className="absolute w-full h-full block top-0 left-0" target="_blank" href={item.link_location}></a>
       <p>{item.link_text}</p>
-      <p><a href={item.link_location}>{item.link_location}</a></p>
+      <p>{item.link_location}</p>
+      <p>Clicked {item.clicks} times</p>
     </div>
   )
 }
