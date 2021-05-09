@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 
-function BtnLink({ href, target, children, style }) {
+function Btn({  onClick, children, style, dataTarget }) {
   let btnStyle;
   switch (style) {
     case 'info': btnStyle = 'bg-blue-400 border-blue-400 hover:bg-transparent'; break
@@ -12,25 +12,25 @@ function BtnLink({ href, target, children, style }) {
   }
   return (
   <>
-    <Link href={href}>
-      <a target={target} className={`inline-block px-5 py-2 rounded border ${btnStyle} transition-colors`}>
-        {children}
-      </a>
-    </Link>
+    <button
+      onClick={onClick}
+      className={`inline-block px-5 py-2 rounded border ${btnStyle} transition-colors`}
+      data-target={dataTarget}>
+      {children}
+    </button>
   </>
   )
 }
 
-BtnLink.propTypes = {
-  href: PropTypes.string,
-  target: PropTypes.oneOf(['_blank', '_self']),
+Btn.propTypes = {
+  onClick: PropTypes.func,
   children: PropTypes.node.isRequired,
-  style: PropTypes.oneOf(['info', 'warning', 'danger', 'success'])
+  style: PropTypes.oneOf(['info', 'warning', 'danger', 'success']),
+  dataTarget: PropTypes.string,
 }
 
-BtnLink.PropsDefault = {
-  target: '_self',
+Btn.PropsDefault = {
   style: 'success',
 }
 
-export default BtnLink
+export default Btn
