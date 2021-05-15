@@ -4,7 +4,7 @@ import LinkItem from '@/components/LinkItem'
 
 function LinkList({ links }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
       {links.map((link) => <LinkItem item={link} />)}
     </div>
   )
