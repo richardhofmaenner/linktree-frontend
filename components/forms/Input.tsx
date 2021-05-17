@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Input({ name, type, placeholder, value, onValueChange }) {
+function Input({ name, type, placeholder, value, onValueChange, mode }) {
   return (
     <input
-      className="w-full border border-white rounded bg-transparent px-4 py-2 mb-5 focus:outline-none"
+      className={`w-full border ${mode == 'normal' ? 'border-white': 'border-gray-700'} rounded bg-transparent px-4 py-2 mb-5 focus:outline-none`}
       type={type}
       placeholder={placeholder}
       name={name}
@@ -20,12 +20,14 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   onValueChange: PropTypes.func.isRequired,
+  mode: PropTypes.oneOf(['normal', 'dark'])
 }
 
 Input.defaultProps = {
   type: 'text',
   placeholder: '',
   value: '',
+  mode: 'normal',
 }
 
 export default Input
