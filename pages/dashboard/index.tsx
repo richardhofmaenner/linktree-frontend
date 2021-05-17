@@ -4,14 +4,14 @@ import Section from '@/components/layout/Section'
 import LinkList from '@/components/LinkList'
 import BtnPopup from '@/components/layout/BtnPopup'
 import CreateUpdateLinkForm from '@/components/CreateUpdateLinkForm'
+import { LinkStore } from '@/stores/LinkStore'
 
 function DashboardPage() {
-  const [myLinks, setMyLinks] = useState([])
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/links`, { credentials: 'include' })
       .then((res) => res.json())
-      .then((json) => setMyLinks(json.data))
+      .then((json) => LinkStore.update(s => { s.links = json.data }))
   }, [])
 
   return (
@@ -22,7 +22,7 @@ function DashboardPage() {
             <CreateUpdateLinkForm linkId="" />
           </BtnPopup>
         </div>
-        <LinkList links={myLinks} />
+        <LinkList links={LinkStore.useState(s => s.links)} />
       </Section>
     </DashboardLayout>
   )
