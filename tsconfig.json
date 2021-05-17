@@ -16,6 +16,9 @@
       ],
       "@/layouts/*": [
         "layouts/*"
+      ],
+      "@/stores/*": [
+        "stores/*"
       ]
     },
     "jsx": "preserve",
