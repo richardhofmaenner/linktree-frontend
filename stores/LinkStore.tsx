@@ -1,6 +1,6 @@
-import {Store, createAsyncAction} from 'pullstate'
+import { Store } from 'pullstate'
 
-interface LinkStore {
+interface LinkStoreInterface {
   links: {
     id: string
     link_text: string
@@ -13,6 +13,5 @@ interface LinkStore {
   }[]
 }
 
-export const LinkStore = new Store<LinkStore>({
-  links: []
-})
+// eslint-disable-next-line import/prefer-default-export
+export const LinkStore = new Store<LinkStoreInterface>({ links: [] })

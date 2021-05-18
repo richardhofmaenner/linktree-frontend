@@ -23,8 +23,6 @@ BtnPopup.propTypes = {
   randomNumber: PropTypes.number,
 }
 
-BtnPopup.defaultProps = {
-  randomNumber: Math.floor(Math.random() * 100000)
-}
+BtnPopup.defaultProps = { randomNumber: Math.floor(Math.random() * 100000) }
 
 export default BtnPopup

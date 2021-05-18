@@ -4,6 +4,7 @@ import Input from '@/components/forms/Input'
 import SubmitBtn from '@/components/forms/SubmitBtn'
 import Cookie from 'js-cookie'
 import ErrorAlert from '@/components/alerts/ErrorAlert'
+import { UserStore } from '@/stores/UserStore'
 
 type myType = {
   username: string,

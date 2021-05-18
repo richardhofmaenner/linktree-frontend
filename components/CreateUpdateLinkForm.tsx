@@ -11,20 +11,18 @@ function CreateUpdateLinkForm({ linkId }) {
   const saveForm = (e) => {
     e.preventDefault()
     setSuccessMessage(null)
-    fetch(`/api/createUpdateLink/`, {
+    fetch('/api/createUpdateLink/', {
       credentials: 'include',
       method: 'PUT',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({ linkItem: linkItem })
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ linkItem }),
     })
       .then(async (res) => {
         if (res.status === 200) {
           const json = await res.json()
-          const links = LinkStore.useState(s => s.links)
+          const links = LinkStore.useState((s) => s.links)
           links.push(json.data)
-          LinkStore.update(s => {s.links = links})
+          LinkStore.update((s) => { s.links = links })
 
           setSuccessMessage('Created new link successfully.')
         }
@@ -33,35 +31,31 @@ function CreateUpdateLinkForm({ linkId }) {
 
   return (
     <>
-      {successMessage &&
-      <p>{successMessage}</p>}
+      {successMessage
+      && <p>{successMessage}</p>}
       <form>
         <Input
           name="LinkName"
           placeholder="Name"
-          onValueChange={(e) => setLinkItem({...linkItem, link_text: e.target.value})}
+          onValueChange={(e) => setLinkItem({ ...linkItem, link_text: e.target.value })}
           value={linkItem.link_text}
-          mode={'dark'}
+          mode="dark"
         />
         <Input
           name="LinkLocation"
           placeholder="Location"
-          onValueChange={(e) => setLinkItem({...linkItem, link_location: e.target.value})}
+          onValueChange={(e) => setLinkItem({ ...linkItem, link_location: e.target.value })}
           value={linkItem.link_location}
-          mode={'dark'}
+          mode="dark"
         />
-        <SubmitBtn onClick={saveForm} mode={'dark'}>Save</SubmitBtn>
+        <SubmitBtn onClick={saveForm} mode="dark">Save</SubmitBtn>
       </form>
     </>
   )
 }
 
-CreateUpdateLinkForm.propTypes = {
-  linkId: PropTypes.string,
-}
+CreateUpdateLinkForm.propTypes = { linkId: PropTypes.string }
 
-CreateUpdateLinkForm.defaultProps = {
-  linkId: ''
-}
+CreateUpdateLinkForm.defaultProps = { linkId: '' }
 
 export default CreateUpdateLinkForm

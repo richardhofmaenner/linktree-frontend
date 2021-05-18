@@ -21,6 +21,8 @@ module.exports = {
   rules: {
     semi: ['error', 'never'],
     indent: ['error', 2],
+    camelcase: ['off'],
+    'no-param-reassign': ['off'],
     'react/jsx-filename-extension': ['off'],
     'no-use-before-define': ['off'],
     '@typescript-eslint/no-use-before-define': ['error'],

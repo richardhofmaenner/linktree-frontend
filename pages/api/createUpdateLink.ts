@@ -2,12 +2,12 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
   if (apiReq.method === 'PUT') {
-    const {linkItem} = apiReq.body
+    const { linkItem } = apiReq.body
     if (linkItem.id === '') {
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/links`, {
         credentials: 'include',
         method: 'PUT',
-        body: JSON.stringify({text: linkItem.link_text, location: linkItem.link_location}),
+        body: JSON.stringify({ text: linkItem.link_text, location: linkItem.link_location }),
       })
         .then(async (res) => {
           if (res.status === 200) {
