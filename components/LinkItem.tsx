@@ -4,7 +4,7 @@ import BtnLink from '@/components/layout/BtnLink'
 
 function LinkItem({ item }) {
   return (
-    <div className="relative border border-white rounded p-5 hover:bg-white hover:text-black transition-colors cursor-pointer">
+    <div className="relative border border-white rounded p-5 hover:bg-white hover:text-black transition-colors cursor-pointer overflow-hidden">
       <a
         className="absolute w-full h-full block top-0 left-0" target="_blank" href={item.link_location}
         rel="noreferrer"
@@ -12,12 +12,9 @@ function LinkItem({ item }) {
 &nbsp;
       </a>
       <p>{item.link_text}</p>
-      <p>{item.link_location}</p>
+      <p className="break-all">{item.link_location}</p>
       <p>
-        Clicked
-        {item.clicks}
-        {' '}
-        times
+        Clicked {item.clicks} {' '} times
       </p>
     </div>
   )

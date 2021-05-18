@@ -2,12 +2,11 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
   if (apiReq.method === 'GET') {
-    console.log(apiReq.headers.authorization)
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/links`, {
       method: 'GET',
       headers: {
         'Authorization': apiReq.headers.authorization
-      },
+      }
     })
       .then(async (res) => {
         if (res.status === 200) {

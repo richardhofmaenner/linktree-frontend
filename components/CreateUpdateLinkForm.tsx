@@ -3,24 +3,25 @@ import PropTypes from 'prop-types'
 import Input from '@/components/forms/Input'
 import SubmitBtn from '@/components/forms/SubmitBtn'
 import { LinkStore } from '@/stores/LinkStore'
+import { UserStore } from '@/stores/UserStore'
 
 function CreateUpdateLinkForm({ linkId }) {
   const [linkItem, setLinkItem] = useState({ id: '', link_text: '', link_location: '' })
   const [successMessage, setSuccessMessage] = useState(null)
+  const token = UserStore.useState(s => s.token)
+  let links = LinkStore.useState(s => s.links)
 
   const saveForm = (e) => {
     e.preventDefault()
     setSuccessMessage(null)
     fetch('/api/createUpdateLink/', {
-      credentials: 'include',
       method: 'PUT',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ linkItem }),
+      headers: { 'Content-type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ text: linkItem.link_text, location: linkItem.link_location }),
     })
       .then(async (res) => {
         if (res.status === 200) {
           const json = await res.json()
-          const links = LinkStore.useState((s) => s.links)
           links.push(json.data)
           LinkStore.update((s) => { s.links = links })
 

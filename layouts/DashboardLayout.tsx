@@ -1,18 +1,16 @@
 import Head from 'next/head'
 import propTypes from 'prop-types'
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { UserStore } from '@/stores/UserStore'
-
-const React = require('react')
+import { PullstateCore } from '@/stores/CentralState'
+import { useRouter } from 'next/router'
 
 function DashboardLayout({ title, heading, children }) {
+
   const router = useRouter()
-  const isLoggedIn = UserStore.useState(s => s.isLoggedIn)
+  const { UserStore } = PullstateCore.useStores()
   useEffect(() => {
-    if (!isLoggedIn) {
-      router.push('/login').then()
-    }
+    const isLoggedIn = UserStore.useState(s => s.isLoggedIn)
+    console.log(isLoggedIn)
   }, [])
   return (
     <div>
@@ -23,7 +21,8 @@ function DashboardLayout({ title, heading, children }) {
         <h1 className="text-center">{heading}</h1>
       </header>
       <main>
-        {children}
+        {isLoggedIn &&
+        {children}}
       </main>
     </div>
   )
