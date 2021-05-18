@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import CenterModalLayout from '@/layouts/CenterModalLayout'
 import Input from '@/components/forms/Input'
 import SubmitBtn from '@/components/forms/SubmitBtn'
-import Cookie from 'js-cookie'
 import ErrorAlert from '@/components/alerts/ErrorAlert'
 import { UserStore } from '@/stores/UserStore'
+import { router } from 'next/client'
 
 type myType = {
   username: string,
   password: string,
-  errors: undefined | { message: string },
+  errors: undefined | string,
   validationErrors: undefined | [{ field: string, message: string, rule: string }]
 }
 
@@ -19,23 +19,12 @@ export default class Login extends Component<myProps, myType> {
   constructor(props) {
     super(props)
     this.valueChanged = this.valueChanged.bind(this)
+    this.signInRequest = this.signInRequest.bind(this)
     this.state = {
       username: '',
       password: '',
       errors: undefined,
       validationErrors: undefined,
-    }
-  }
-
-  componentDidMount() {
-    if (Cookie.get('error') !== undefined) {
-      this.setState({ errors: JSON.parse(atob(Cookie.get('error'))) })
-      Cookie.remove('error')
-    } else if (Cookie.get('validation-error') !== undefined) {
-      const message = JSON.parse(atob(Cookie.get('validation-error')))
-      const { errors } = message.message
-      this.setState({ validationErrors: errors })
-      Cookie.remove('validation-error')
     }
   }
 
@@ -48,12 +37,46 @@ export default class Login extends Component<myProps, myType> {
     }
   }
 
+  async signInRequest(e) {
+    e.preventDefault()
+    this.setState({ errors: undefined, validationErrors: undefined })
+    fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        email: this.state.username,
+        password: this.state.password,
+      })
+    })
+      .then(async (res) => {
+        if (res.status === 200) {
+          const json = await res.json()
+          UserStore.update(s => {
+            s.token = json.token
+            s.isLoggedIn = true
+          })
+          await router.push('/dashboard')
+        } else if (res.status === 403) {
+          const json = await res.json()
+          this.setState({ errors: json.error })
+        } else if (res.status === 422) {
+          const json = await res.json()
+          this.setState({ validationErrors: json.errors })
+        } else {
+          this.setState({ errors: 'Something went wrong' })
+        }
+      })
+  }
+
   render() {
     const { username, password, errors, validationErrors } = this.state
     return (
       <CenterModalLayout title="Login" modalTitle="Sign in">
         {errors
-          && <ErrorAlert>{errors.message}</ErrorAlert>}
+          && <ErrorAlert>{errors}</ErrorAlert>}
         {validationErrors
         && (
           <ErrorAlert>
@@ -81,7 +104,7 @@ export default class Login extends Component<myProps, myType> {
             />
           </div>
           <div>
-            <SubmitBtn>Sign in</SubmitBtn>
+            <SubmitBtn onClick={this.signInRequest}>Sign in</SubmitBtn>
           </div>
         </form>
       </CenterModalLayout>

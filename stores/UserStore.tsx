@@ -1,8 +1,11 @@
 import { Store } from 'pullstate'
 
 interface UserStoreInterface {
-  token: string | null
+  token: string | null,
+  isLoggedIn: boolean
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export const UserStore = new Store<UserStoreInterface>({ token: null })
+export const UserStore = new Store<UserStoreInterface>({
+  token: null,
+  isLoggedIn: false
+})
