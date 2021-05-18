@@ -5,10 +5,17 @@ import LinkList from '@/components/LinkList'
 import BtnPopup from '@/components/layout/BtnPopup'
 import CreateUpdateLinkForm from '@/components/CreateUpdateLinkForm'
 import { LinkStore } from '@/stores/LinkStore'
+import { UserStore } from '@/stores/UserStore'
 
 function DashboardPage() {
+  const token = UserStore.useState(s => s.token)
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/links`)
+    fetch(`/api/links`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then((res) => res.json())
       .then((json) => LinkStore.update((s) => { s.links = json.data }))
   }, [])

@@ -1,22 +1,18 @@
 import Head from 'next/head'
 import propTypes from 'prop-types'
 import { useRouter } from 'next/router'
-import Cookie from 'js-cookie'
 import { useEffect } from 'react'
+import { UserStore } from '@/stores/UserStore'
 
 const React = require('react')
 
 function DashboardLayout({ title, heading, children }) {
+  const router = useRouter()
+  const isLoggedIn = UserStore.useState(s => s.isLoggedIn)
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/info`, { credentials: 'include' })
-      .then((response) => response.json())
-      .then((json) => {
-        if (json.isLoggedIn === false) {
-          const router = useRouter()
-          Cookie.set('error', btoa('{"message": "You have to sign in first!"}'))
-          router.push('/login').then()
-        }
-      })
+    if (!isLoggedIn) {
+      router.push('/login').then()
+    }
   }, [])
   return (
     <div>
