@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
   if (apiReq.method === 'PUT') {
-    console.log(apiReq.body)
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/links`, {
       headers: {
         'Authorization': apiReq.headers.authorization,

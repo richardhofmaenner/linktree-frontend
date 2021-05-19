@@ -16,12 +16,18 @@ function DashboardPage() {
       .then((json) => setLinks(json.data))
   }, [])
 
+  function addedLink(newLink) {
+    let tempLink = links
+    tempLink.push(newLink)
+    setLinks(tempLink)
+  }
+
   return (
     <DashboardLayout heading="Dashboard" title="Dashboard">
       <Section>
         <div className="mb-5 flex justify-between items-start">
           <BtnPopup randomNumber={255}>
-            <CreateUpdateLinkForm linkId="" />
+            <CreateUpdateLinkForm linkId="" onAdded={addedLink} />
           </BtnPopup>
           <SubmitBtn onClick={logout}>Sign out</SubmitBtn>
         </div>

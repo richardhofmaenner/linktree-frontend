@@ -1,6 +1,5 @@
 import { createContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import cookie from 'cookie'
 
 interface IAuthContext {
   token: null | string
@@ -63,6 +62,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async (e) => {
     e.preventDefault()
+    await fetch('/api/logout')
     setToken(null)
     setIsLoggedIn(false)
     await router.push('/login')
@@ -75,7 +75,8 @@ export const AuthProvider = ({ children }) => {
     if (res.status === 200) {
       setIsLoggedIn(true)
     } else {
-      console.log(data)
+      setError('Please log in first')
+      await router.push('/login')
     }
   }
 

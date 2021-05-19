@@ -4,7 +4,7 @@ import Input from '@/components/forms/Input'
 import SubmitBtn from '@/components/forms/SubmitBtn'
 import AuthContext from '@/context/AuthContext'
 
-function CreateUpdateLinkForm({ linkId }) {
+function CreateUpdateLinkForm({ linkId, onAdded }) {
   const [linkItem, setLinkItem] = useState({ id: '', link_text: '', link_location: '' })
   const [successMessage, setSuccessMessage] = useState(null)
   const {token} = useContext(AuthContext)
@@ -20,7 +20,8 @@ function CreateUpdateLinkForm({ linkId }) {
       .then(async (res) => {
         if (res.status === 200) {
           const json = await res.json()
-
+          console.log(json.data)
+          onAdded(json.data)
           setSuccessMessage('Created new link successfully.')
         }
       })
@@ -51,7 +52,10 @@ function CreateUpdateLinkForm({ linkId }) {
   )
 }
 
-CreateUpdateLinkForm.propTypes = { linkId: PropTypes.string }
+CreateUpdateLinkForm.propTypes = {
+  linkId: PropTypes.string,
+  onAdded: PropTypes.func
+}
 
 CreateUpdateLinkForm.defaultProps = { linkId: '' }
 
