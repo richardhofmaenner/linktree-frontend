@@ -1,11 +1,14 @@
 import '../styles/globals.css'
+import {AuthProvider} from '@/context/AuthContext'
 
 const React = require('react')
 
-// eslint-disable-next-line react/prop-types
 function MyApp({ Component, pageProps }) {
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <Component {...pageProps} />
+  return (
+    <AuthProvider>
+      <Component {...pageProps} />
+    </AuthProvider>
+  )
 }
 
 export default MyApp

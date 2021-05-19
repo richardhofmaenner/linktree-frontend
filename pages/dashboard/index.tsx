@@ -1,34 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import DashboardLayout from '@/layouts/DashboardLayout'
 import Section from '@/components/layout/Section'
 import LinkList from '@/components/LinkList'
 import BtnPopup from '@/components/layout/BtnPopup'
 import CreateUpdateLinkForm from '@/components/CreateUpdateLinkForm'
-import { LinkStore } from '@/stores/LinkStore'
-import { UserStore } from '@/stores/UserStore'
+import AuthContext from '@/context/AuthContext'
+import SubmitBtn from '@/components/forms/SubmitBtn'
 
 function DashboardPage() {
-  const token = UserStore.useState(s => s.token)
+  const {logout} = useContext(AuthContext)
+  const [links, setLinks] = useState([])
   useEffect(() => {
-    fetch(`/api/links`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
+    fetch(`/api/links`)
       .then((res) => res.json())
-      .then((json) => LinkStore.update((s) => { s.links = json.data }))
+      .then((json) => setLinks(json.data))
   }, [])
 
   return (
     <DashboardLayout heading="Dashboard" title="Dashboard">
       <Section>
-        <div className="mb-5">
-          <BtnPopup>
+        <div className="mb-5 flex justify-between items-start">
+          <BtnPopup randomNumber={255}>
             <CreateUpdateLinkForm linkId="" />
           </BtnPopup>
+          <SubmitBtn onClick={logout}>Sign out</SubmitBtn>
         </div>
-        <LinkList links={LinkStore.useState((s) => s.links)} />
+        <LinkList links={links} />
       </Section>
     </DashboardLayout>
   )

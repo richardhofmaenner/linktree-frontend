@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import cookie from 'cookie'
 
 export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
   if (apiReq.method === 'POST') {
@@ -12,6 +13,12 @@ export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
     })
       .then(async res => {
         const json = await res.json()
+        apiRes.setHeader('Set-Cookie', cookie.serialize('token', json.token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV !== 'development',
+          maxAge: 60 * 60 * 24 * 7,
+          path: '/'
+        }))
         return apiRes.status(res.status).json(json)
       })
       .catch(() => {

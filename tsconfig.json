@@ -19,6 +19,9 @@
       ],
       "@/stores/*": [
         "stores/*"
+      ],
+      "@/context/*": [
+        "context/*"
       ]
     },
     "jsx": "preserve",

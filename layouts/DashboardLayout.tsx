@@ -1,17 +1,15 @@
 import Head from 'next/head'
 import propTypes from 'prop-types'
-import { useEffect } from 'react'
-import { PullstateCore } from '@/stores/CentralState'
+import AuthContext from '@/context/AuthContext'
+import { useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 function DashboardLayout({ title, heading, children }) {
-
-  const router = useRouter()
-  const { UserStore } = PullstateCore.useStores()
+  const {checkLogin} = useContext(AuthContext)
   useEffect(() => {
-    const isLoggedIn = UserStore.useState(s => s.isLoggedIn)
-    console.log(isLoggedIn)
-  }, [])
+    checkLogin()
+  })
+
   return (
     <div>
       <Head>
@@ -21,8 +19,7 @@ function DashboardLayout({ title, heading, children }) {
         <h1 className="text-center">{heading}</h1>
       </header>
       <main>
-        {isLoggedIn &&
-        {children}}
+        {children}
       </main>
     </div>
   )

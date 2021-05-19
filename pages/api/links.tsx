@@ -1,11 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import cookie from 'cookie'
 
 export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
   if (apiReq.method === 'GET') {
+    const {token} = cookie.parse(apiReq.headers.cookie)
+    console.log(token)
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/links`, {
       method: 'GET',
       headers: {
-        'Authorization': apiReq.headers.authorization
+        'Authorization': `Bearer ${token}`
       }
     })
       .then(async (res) => {
