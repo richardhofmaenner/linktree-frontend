@@ -8,16 +8,16 @@ import AuthContext from '@/context/AuthContext'
 import SubmitBtn from '@/components/forms/SubmitBtn'
 
 function DashboardPage() {
-  const {logout} = useContext(AuthContext)
+  const { logout } = useContext(AuthContext)
   const [links, setLinks] = useState([])
   useEffect(() => {
-    fetch(`/api/links`)
+    fetch('/api/links')
       .then((res) => res.json())
       .then((json) => setLinks(json.data))
   }, [])
 
   function addedLink(newLink) {
-    let tempLink = links
+    const tempLink = links
     tempLink.push(newLink)
     setLinks(tempLink)
     console.log(links)

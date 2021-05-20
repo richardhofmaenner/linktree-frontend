@@ -7,17 +7,17 @@ export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        'Accept': 'application/json'
+        Accept: 'application/json',
       },
-      body: JSON.stringify(apiReq.body)
+      body: JSON.stringify(apiReq.body),
     })
-      .then(async res => {
+      .then(async (res) => {
         const json = await res.json()
         apiRes.setHeader('Set-Cookie', cookie.serialize('token', json.token, {
           httpOnly: true,
           secure: process.env.NODE_ENV !== 'development',
           maxAge: 60 * 60 * 24 * 7,
-          path: '/'
+          path: '/',
         }))
         apiRes.status(res.status).json(json)
       })

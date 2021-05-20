@@ -18,7 +18,7 @@ const AuthContext = createContext<IAuthContext>({
   error: null,
   login: () => {},
   logout: () => {},
-  checkLogin: () => {}
+  checkLogin: () => {},
 })
 
 export const AuthProvider = ({ children }) => {
@@ -35,12 +35,12 @@ export const AuthProvider = ({ children }) => {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
-        'Accept': 'application/json'
+        Accept: 'application/json',
       },
       body: JSON.stringify({
-        email: email,
-        password: password,
-      })
+        email,
+        password,
+      }),
     })
       .then(async (res) => {
         if (res.status === 200) {
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
           await router.push('/dashboard')
         } else if (res.status === 403) {
           const json = await res.json()
-          setError(json.error )
+          setError(json.error)
         } else if (res.status === 422) {
           const json = await res.json()
           setValidationError(json.errors)

@@ -4,17 +4,17 @@ import Input from '@/components/forms/Input'
 import SubmitBtn from '@/components/forms/SubmitBtn'
 import AuthContext from '@/context/AuthContext'
 
-function CreateUpdateLinkForm({ linkId, onAdded }) {
+function CreateUpdateLinkForm({ onAdded }) {
   const [linkItem, setLinkItem] = useState({ id: '', link_text: '', link_location: '' })
   const [successMessage, setSuccessMessage] = useState(null)
-  const {token} = useContext(AuthContext)
+  const { token } = useContext(AuthContext)
 
   const saveForm = (e) => {
     e.preventDefault()
     setSuccessMessage(null)
     fetch('/api/createUpdateLink/', {
       method: 'PUT',
-      headers: { 'Content-type': 'application/json', 'Authorization': `Bearer ${token}` },
+      headers: { 'Content-type': 'application/json', Authorization: `Bearer ${token}` },
       body: JSON.stringify({ text: linkItem.link_text, location: linkItem.link_location }),
     })
       .then(async (res) => {
@@ -51,11 +51,8 @@ function CreateUpdateLinkForm({ linkId, onAdded }) {
   )
 }
 
-CreateUpdateLinkForm.propTypes = {
-  linkId: PropTypes.string,
-  onAdded: PropTypes.func
-}
+CreateUpdateLinkForm.propTypes = { onAdded: PropTypes.func }
 
-CreateUpdateLinkForm.defaultProps = { linkId: '' }
+CreateUpdateLinkForm.defaultProps = { onAdded: () => {} }
 
 export default CreateUpdateLinkForm

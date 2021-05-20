@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import BtnLink from '@/components/layout/BtnLink'
 
 function LinkItem({ item }) {
   return (
@@ -14,7 +13,13 @@ function LinkItem({ item }) {
       <p>{item.link_text}</p>
       <p className="break-all">{item.link_location}</p>
       <p>
-        Clicked {item.clicks} {' '} times
+        Clicked
+        {' '}
+        {item.clicks}
+        {' '}
+        {' '}
+        {' '}
+        times
       </p>
     </div>
   )

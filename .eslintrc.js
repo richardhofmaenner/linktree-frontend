@@ -22,6 +22,7 @@ module.exports = {
     semi: ['error', 'never'],
     indent: ['error', 2],
     camelcase: ['off'],
+    'max-len': ['error', 250],
     'no-param-reassign': ['off'],
     'react/jsx-filename-extension': ['off'],
     'no-use-before-define': ['off'],

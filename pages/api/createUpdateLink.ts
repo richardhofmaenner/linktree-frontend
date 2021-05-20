@@ -3,12 +3,12 @@ import cookie from 'cookie'
 
 export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
   if (apiReq.method === 'PUT') {
-    const {token} = cookie.parse(apiReq.headers.cookie)
+    const { token } = cookie.parse(apiReq.headers.cookie)
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/links`, {
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         'Content-type': 'application/json',
-        'Accept': 'application/json'
+        Accept: 'application/json',
       },
       method: 'PUT',
       body: JSON.stringify(apiReq.body),

@@ -10,6 +10,19 @@ function LinkList({ links }) {
   )
 }
 
-LinkList.propTypes = { links: PropTypes.array.isRequired }
+LinkList.propTypes = {
+  links: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      link_text: PropTypes.string.isRequired,
+      link_location: PropTypes.string.isRequired,
+      clicks: PropTypes.number.isRequired,
+      index: PropTypes.number.isRequired,
+      user_id: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+      updated_at: PropTypes.string.isRequired,
+    }),
+  ])).isRequired,
+}
 
 export default LinkList

@@ -7,7 +7,7 @@ export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
       httpOnly: true,
       secure: process.env.NODE_ENV !== 'development',
       maxAge: 1,
-      path: '/'
+      path: '/',
     }))
     apiRes.status(200)
     apiRes.end()

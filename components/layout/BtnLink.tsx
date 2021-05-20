@@ -9,6 +9,7 @@ function BtnLink({ href, target, children, style }) {
   case 'warning': btnStyle = 'bg-yellow-700 border-yellow-700 hover:bg-transparent'; break
   case 'danger': btnStyle = 'bg-red-700 border-red-700 hover:bg-transparent'; break
   case 'success': btnStyle = 'bg-green-700 border-green-700 hover:bg-transparent'; break
+  default: break
   }
   return (
     <>
@@ -22,13 +23,13 @@ function BtnLink({ href, target, children, style }) {
 }
 
 BtnLink.propTypes = {
-  href: PropTypes.string,
+  href: PropTypes.string.isRequired,
   target: PropTypes.oneOf(['_blank', '_self']),
   children: PropTypes.node.isRequired,
   style: PropTypes.oneOf(['info', 'warning', 'danger', 'success']),
 }
 
-BtnLink.PropsDefault = {
+BtnLink.defaultProps = {
   target: '_self',
   style: 'success',
 }

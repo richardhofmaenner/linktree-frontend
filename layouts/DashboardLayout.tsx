@@ -2,10 +2,11 @@ import Head from 'next/head'
 import propTypes from 'prop-types'
 import AuthContext from '@/context/AuthContext'
 import { useContext, useEffect } from 'react'
-import { useRouter } from 'next/router'
+
+const React = require('react')
 
 function DashboardLayout({ title, heading, children }) {
-  const {checkLogin} = useContext(AuthContext)
+  const { checkLogin } = useContext(AuthContext)
   useEffect(() => {
     checkLogin()
   })

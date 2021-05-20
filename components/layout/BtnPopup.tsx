@@ -10,7 +10,12 @@ function BtnPopup({ children, randomNumber }) {
       <Btn style="success" onClick={() => setIsOpened(true)} dataTarget={`#popup-${randomNumber}`}>Add new Link</Btn>
       <div className={`flex items-center justify-center ${styles.popup} ${isOpened && styles.open}`}>
         <div id={`popup-${randomNumber}`} className="w-11/12 md:w-2/3 xl:w-1/3 bg-white rounded pt-10 px-5 text-black relative">
-          <span className="absolute top-4 right-4 cursor-pointer" onClick={() => setIsOpened(false)}>X</span>
+          <span
+            role="button" onFocus={() => {}} className="absolute top-4 right-4 cursor-pointer"
+            onClick={() => setIsOpened(false)}
+          >
+            X
+          </span>
           {children}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import {AuthProvider} from '@/context/AuthContext'
+import { AuthProvider } from '@/context/AuthContext'
 
 const React = require('react')
 

@@ -8,6 +8,7 @@ function Btn({ onClick, children, style, dataTarget }) {
   case 'warning': btnStyle = 'bg-yellow-700 border-yellow-700 hover:bg-transparent'; break
   case 'danger': btnStyle = 'bg-red-700 border-red-700 hover:bg-transparent'; break
   case 'success': btnStyle = 'bg-green-700 border-green-700 hover:bg-transparent'; break
+  default: break
   }
   return (
     <>
@@ -30,6 +31,10 @@ Btn.propTypes = {
   dataTarget: PropTypes.string,
 }
 
-Btn.PropsDefault = { style: 'success' }
+Btn.defaultProps = {
+  onClick: () => {},
+  style: 'success',
+  dataTarget: '',
+}
 
 export default Btn

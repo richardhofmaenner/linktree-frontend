@@ -6,11 +6,11 @@ import SubmitBtn from '@/components/forms/SubmitBtn'
 import AuthContext from '@/context/AuthContext'
 
 function Login() {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const { login, error, validationError } = useContext(AuthContext)
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     login(username, password)
   }
