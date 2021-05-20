@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Btn({ onClick, children, style, dataTarget }) {
+function Btn({ onClick, children, styling, dataTarget }) {
   let btnStyle
-  switch (style) {
+  switch (styling) {
   case 'info': btnStyle = 'bg-blue-400 border-blue-400 hover:bg-transparent'; break
   case 'warning': btnStyle = 'bg-yellow-700 border-yellow-700 hover:bg-transparent'; break
   case 'danger': btnStyle = 'bg-red-700 border-red-700 hover:bg-transparent'; break
@@ -27,13 +27,13 @@ function Btn({ onClick, children, style, dataTarget }) {
 Btn.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node.isRequired,
-  style: PropTypes.oneOf(['info', 'warning', 'danger', 'success']),
+  styling: PropTypes.oneOf(['info', 'warning', 'danger', 'success']),
   dataTarget: PropTypes.string,
 }
 
 Btn.defaultProps = {
   onClick: () => {},
-  style: 'success',
+  styling: 'success',
   dataTarget: '',
 }
 

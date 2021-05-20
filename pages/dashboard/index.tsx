@@ -20,7 +20,6 @@ function DashboardPage() {
     const tempLink = links
     tempLink.push(newLink)
     setLinks(tempLink)
-    console.log(links)
   }
 
   return (
@@ -28,7 +27,7 @@ function DashboardPage() {
       <Section>
         <div className="mb-5 flex justify-between items-start">
           <BtnPopup randomNumber={255}>
-            <CreateUpdateLinkForm linkId="" onAdded={addedLink} />
+            <CreateUpdateLinkForm onAdded={addedLink} />
           </BtnPopup>
           <SubmitBtn onClick={logout}>Sign out</SubmitBtn>
         </div>

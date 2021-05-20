@@ -16,8 +16,7 @@ export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
           apiRes.status(res.status).json(res.body)
         }
       })
-      .catch((e) => {
-        console.error(e)
+      .catch(() => {
         apiRes.status(500)
       })
   } else {

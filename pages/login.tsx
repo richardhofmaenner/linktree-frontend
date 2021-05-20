@@ -23,7 +23,7 @@ function Login() {
       && (
         <ErrorAlert>
           <ul>
-            {validationError.map((error) => <li>{error.message}</li>)}
+            {validationError.map((err) => <li>{err.message}</li>)}
           </ul>
         </ErrorAlert>
       )}

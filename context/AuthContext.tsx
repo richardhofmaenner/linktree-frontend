@@ -1,5 +1,8 @@
 import { createContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import PropTypes from 'prop-types'
+
+const React = require('react')
 
 interface IAuthContext {
   token: null | string
@@ -90,5 +93,7 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   )
 }
+
+AuthProvider.propTypes = { children: PropTypes.node.isRequired }
 
 export default AuthContext
