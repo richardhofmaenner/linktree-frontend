@@ -9,8 +9,10 @@ export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
       maxAge: 1,
       path: '/'
     }))
-    return apiRes.status(200)
+    apiRes.status(200)
+    apiRes.end()
   } else {
-    return apiRes.status(405).setHeader('Allow', 'POST')
+    apiRes.status(405).setHeader('Allow', 'POST')
+    apiRes.end()
   }
 }

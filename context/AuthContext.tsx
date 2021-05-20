@@ -69,15 +69,19 @@ export const AuthProvider = ({ children }) => {
   }
 
   const checkLogin = async () => {
-    const res = await fetch('/api/user')
-    const data = await res.json()
-
-    if (res.status === 200) {
-      setIsLoggedIn(true)
-    } else {
-      setError('Please log in first')
-      await router.push('/login')
-    }
+    fetch('/api/user')
+      .then(async (res) => {
+        if (res.status === 200) {
+          setIsLoggedIn(true)
+        } else {
+          setError('Please log in first')
+          await router.push('/login')
+        }
+      })
+      .catch(async () => {
+        setError('Something went wrong.')
+        await router.push('/login')
+      })
   }
 
   return (
