@@ -20,6 +20,7 @@ function DashboardPage() {
     let tempLink = links
     tempLink.push(newLink)
     setLinks(tempLink)
+    console.log(links)
   }
 
   return (

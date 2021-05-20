@@ -20,7 +20,6 @@ function CreateUpdateLinkForm({ linkId, onAdded }) {
       .then(async (res) => {
         if (res.status === 200) {
           const json = await res.json()
-          console.log(json.data)
           onAdded(json.data)
           setSuccessMessage('Created new link successfully.')
         }
