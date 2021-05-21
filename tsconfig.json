@@ -22,6 +22,9 @@
       ],
       "@/context/*": [
         "context/*"
+      ],
+      "@/action/*": [
+        "action/*"
       ]
     },
     "jsx": "preserve",

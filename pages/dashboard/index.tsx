@@ -7,14 +7,13 @@ import CreateUpdateLinkForm from '@/components/CreateUpdateLinkForm'
 import AuthContext from '@/context/AuthContext'
 import SubmitBtn from '@/components/forms/SubmitBtn'
 import LinkStore from '@/store/LinkStore'
+import LinkFetchAll from '@/action/LinkFetchAll'
 
 function DashboardPage() {
   const { logout } = useContext(AuthContext)
   const links = LinkStore.useState((s) => s.links)
   useEffect(() => {
-    fetch('/api/links')
-      .then((res) => res.json())
-      .then((json) => LinkStore.update((s) => { s.links = json.data }))
+    LinkFetchAll.run()
   }, [])
 
   return (

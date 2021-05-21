@@ -1,18 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import LinkItem from '@/components/LinkItem'
+import LinkFetchAll from '@/action/LinkFetchAll'
 
 function LinkList({ links }) {
-
   const deleteItem = async (id) => {
-    fetch(`/api/link/${id}`, {
-      method: 'DELETE'
-    })
+    fetch(`/api/link/${id}`, { method: 'DELETE' })
       .then((res) => {
         if (res.status === 200) {
-          
-        } else {
-          console.log('Failed with status', res.status)
+          LinkFetchAll.run()
         }
       })
   }
@@ -36,7 +32,7 @@ LinkList.propTypes = {
       created_at: PropTypes.string.isRequired,
       updated_at: PropTypes.string.isRequired,
     }),
-    PropTypes.shape({})
+    PropTypes.shape({}),
   ])).isRequired,
 }
 

@@ -7,9 +7,7 @@ export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
     const { id } = apiReq.query
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/links/${id}`, {
       method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then(async (res) => {
         if (res.status === 200) {
