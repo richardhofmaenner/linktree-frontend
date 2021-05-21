@@ -3,9 +3,23 @@ import PropTypes from 'prop-types'
 import LinkItem from '@/components/LinkItem'
 
 function LinkList({ links }) {
+
+  const deleteItem = async (id) => {
+    fetch(`/api/link/${id}`, {
+      method: 'DELETE'
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          
+        } else {
+          console.log('Failed with status', res.status)
+        }
+      })
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-      {links.map((link) => <LinkItem key={link.id} item={link} />)}
+      {links.map((link) => <LinkItem key={link.id} item={link} removing={deleteItem} />)}
     </div>
   )
 }

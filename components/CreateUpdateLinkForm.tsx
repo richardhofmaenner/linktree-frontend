@@ -26,6 +26,7 @@ function CreateUpdateLinkForm() {
             s.links = links
           })
           setSuccessMessage('Created new link successfully.')
+          setLinkItem({id: '', link_text: '', link_location: ''})
         }
       })
   }

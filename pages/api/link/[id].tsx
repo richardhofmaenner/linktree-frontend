@@ -2,26 +2,30 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import cookie from 'cookie'
 
 export default async (apiReq: NextApiRequest, apiRes: NextApiResponse) => {
-  if (apiReq.method === 'GET') {
+  if (apiReq.method === 'DELETE') {
     const { token } = cookie.parse(apiReq.headers.cookie)
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/links`, {
-      method: 'GET',
-      headers: { Authorization: `Bearer ${token}` },
+    const { id } = apiReq.query
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/links/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
       .then(async (res) => {
         if (res.status === 200) {
-          const json = await res.json()
           apiRes.status(200)
-            .json(json)
+          apiRes.end()
+        } else if (res.status === 422) {
+          const json = await res.json()
+          apiRes.status(422).json(json)
         } else {
           apiRes.status(res.status)
-            .json(res.body)
+          apiRes.end()
         }
       })
       .catch(() => {
         apiRes.status(500)
+        apiRes.end()
       })
-  } else {
-    apiRes.status(405)
   }
 }
