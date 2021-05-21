@@ -22,6 +22,7 @@ LinkList.propTypes = {
       created_at: PropTypes.string.isRequired,
       updated_at: PropTypes.string.isRequired,
     }),
+    PropTypes.shape({})
   ])).isRequired,
 }
 

@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react'
-import PropTypes from 'prop-types'
 import Input from '@/components/forms/Input'
 import SubmitBtn from '@/components/forms/SubmitBtn'
 import AuthContext from '@/context/AuthContext'
+import LinkStore from '@/store/LinkStore'
 
-function CreateUpdateLinkForm({ onAdded }) {
+function CreateUpdateLinkForm() {
   const [linkItem, setLinkItem] = useState({ id: '', link_text: '', link_location: '' })
   const [successMessage, setSuccessMessage] = useState(null)
   const { token } = useContext(AuthContext)
+  const links = [...LinkStore.useState((s) => s.links)]
 
   const saveForm = (e) => {
     e.preventDefault()
@@ -20,7 +21,10 @@ function CreateUpdateLinkForm({ onAdded }) {
       .then(async (res) => {
         if (res.status === 200) {
           const json = await res.json()
-          onAdded(json.data)
+          links.push(json.data)
+          LinkStore.update((s) => {
+            s.links = links
+          })
           setSuccessMessage('Created new link successfully.')
         }
       })
@@ -50,9 +54,5 @@ function CreateUpdateLinkForm({ onAdded }) {
     </>
   )
 }
-
-CreateUpdateLinkForm.propTypes = { onAdded: PropTypes.func }
-
-CreateUpdateLinkForm.defaultProps = { onAdded: () => {} }
 
 export default CreateUpdateLinkForm

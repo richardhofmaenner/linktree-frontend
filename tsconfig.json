@@ -17,8 +17,8 @@
       "@/layouts/*": [
         "layouts/*"
       ],
-      "@/stores/*": [
-        "stores/*"
+      "@/store/*": [
+        "store/*"
       ],
       "@/context/*": [
         "context/*"
